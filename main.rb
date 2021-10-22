@@ -26,7 +26,7 @@ class App
   def input_process
     option=show_options
     
-    p option
+   
     case option
     when 1
       show_books
@@ -66,14 +66,14 @@ class App
     
   end
 
-  def create_person(list)
+  def create_person
     puts "\n Do you want to create a (0) Student or a (1) Teacher?"
     input = gets.chomp
-    create_student(list) if input == '0'
-    create_teacher(list) if input == '1'
+    create_student if input == '0'
+    create_teacher if input == '1'
   end
 
-  def create_student(list)
+  def create_student
     puts "\nEnter the age of the student"
     age = gets.chomp
     puts "\nEnter the name of the student"
@@ -90,7 +90,7 @@ class App
     
   end
 
-  def create_teacher(list)
+  def create_teacher
     puts "\nEnter the age of the teacher"
     age = gets.chomp
     puts "\nEnter the name of the teacher"
@@ -98,7 +98,7 @@ class App
     name == '' ? false : name
     puts "\nEnter the specialization of the teacher"
     spec = gets.chomp
-    teacher = Teacher.new(spec, age, name)
+    teacher = Teacher.new(age, spec, name)
     @people << teacher
     add_to_list
     input_process
@@ -151,7 +151,7 @@ class App
 
   def show_people
     @people.each { |person| puts "\n[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-    show_options
+    input_process
   end
 
   def show_rentals(list)
