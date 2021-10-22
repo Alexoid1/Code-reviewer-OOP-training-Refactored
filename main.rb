@@ -47,8 +47,8 @@ class App
 
   private
 
-  def add_to_list(list, item)
-    list << item
+  def add_to_list
+    
     'Created sucessfully'
   end
 
@@ -58,7 +58,8 @@ class App
     puts "\nEnter the author of the book"
     author = gets.chomp
     book = Book.new(title, author)
-    add_to_list(list, book)
+    @books << book
+    add_to_list
   end
 
   def create_person(list)
@@ -80,7 +81,9 @@ class App
     permission = gets.chomp
     student = Student.new(age, 'none', name, parent_permission: permission == 1)
     @people << student
+    add_to_list
     show_options
+    
   end
 
   def create_teacher(list)
@@ -93,7 +96,9 @@ class App
     spec = gets.chomp
     teacher = Teacher.new(spec, age, name)
     @people << teacher
+    add_to_list
     show_options
+    
   end
 
   def validate_num(input, list)
@@ -112,15 +117,15 @@ class App
     validate_date(input)
   end
 
-  def create_rental(list, book_list, people_list)
+  def create_rental
     puts "\nChoose a book from the list"
-    book_list.each { |b| puts "(#{book_list.index(b)}) Title: '#{b.title}' Author: '#{b.author}'" }
+    @books.each_with_index{ |b,i| puts "(#{i}) Title: '#{b.title}' Author: '#{b.author}'" }
     book_choice = gets.chomp
-    validate_num(book_choice, book_list)
+    validate_num(book_choice, @books)
     puts "\nChoose a person"
-    people_list.each { |person| puts "(#{people_list.index(person)}) Name: '#{person.name}' ID: '#{person.id}'" }
+    @people.each_with_index{ |person,i| puts "(#{i}) Name: '#{person.name}' ID: '#{person.id}'" }
     person_choice = gets.chomp
-    validate_num(person_choice, people_list)
+    validate_num(person_choice, @people)
     puts "\nPlease enter a day"
     day = gets.chomp
     puts "\nPlease enter a month"
@@ -139,7 +144,7 @@ class App
     show_options
   end
 
-  def show_people(list)
+  def show_people
     @people.each { |person| puts "\n[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     show_options
   end
