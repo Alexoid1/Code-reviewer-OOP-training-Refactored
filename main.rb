@@ -25,6 +25,8 @@ class App
 
   def input_process
     option=show_options
+    
+    p option
     case option
     when 1
       show_books
@@ -40,19 +42,19 @@ class App
       show_rentals(rentals_list)
     when 7
       puts 'Thank you for using this app!'
-      return
+      
     end
-    
+    puts "\n"
   end
 
-  private
+ 
 
   def add_to_list
     
     'Created sucessfully'
   end
 
-  def create_book(list)
+  def create_book
     puts "\nEnter a book title"
     title = gets.chomp
     puts "\nEnter the author of the book"
@@ -60,6 +62,8 @@ class App
     book = Book.new(title, author)
     @books << book
     add_to_list
+    input_process
+    
   end
 
   def create_person(list)
@@ -82,7 +86,7 @@ class App
     student = Student.new(age, 'none', name, parent_permission: permission == 1)
     @people << student
     add_to_list
-    show_options
+    input_process
     
   end
 
@@ -97,7 +101,7 @@ class App
     teacher = Teacher.new(spec, age, name)
     @people << teacher
     add_to_list
-    show_options
+    input_process
     
   end
 
@@ -134,14 +138,15 @@ class App
     year = gets.chomp
     date = "#{day}/#{month}/#{year}"
     validate_date(date)
-    rental = Rental.new(date, people_list[person_choice.to_i], book_list[book_choice.to_i])
+    rental = Rental.new(date, @people[person_choice.to_i], @books[book_choice.to_i])
     puts 'Created successfully'
-    add_to_list(list, rental)
+    add_to_list
+    show_options
   end
 
   def show_books
     @books.each { |b| puts "\nTitle: '#{b.title}' Author: '#{b.author}'" }
-    show_options
+    input_process
   end
 
   def show_people
@@ -163,7 +168,7 @@ end
 def main
   app = App.new
   
-  app.show_options
+  app.input_process
 end
 
 main
