@@ -4,6 +4,12 @@ require_relative 'Classes/teacher'
 require_relative 'Classes/rental'
 
 class App
+  attr_accessor :books, :people, :rentals
+  def initialize
+    @books = []
+    @people = []
+    @rentals = []
+  end
   def show_options
     puts ' '
     puts 'Please choose an option by enterin a number:'
@@ -14,26 +20,29 @@ class App
     puts '5 - Create a rental'
     puts '6 - List all rentals for a given person id'
     puts '7 - Exit'
+    option = gets.chomp.to_i
   end
 
-  def input_process(input, book_list, people_list, rentals_list)
-    case input.to_i
+  def input_process
+    option=show_options
+    case option
     when 1
-      show_books(book_list)
+      show_books
     when 2
-      show_people(people_list)
+      show_people
     when 3
-      create_person(people_list)
+      create_person
     when 4
-      create_book(book_list)
+      create_book
     when 5
       create_rental(rentals_list, book_list, people_list)
     when 6
       show_rentals(rentals_list)
     when 7
+      puts 'Thank you for using this app!'
       return
     end
-    main(book_list, people_list, rentals_list)
+    
   end
 
   private
@@ -70,7 +79,8 @@ class App
     puts '(1) Permission'
     permission = gets.chomp
     student = Student.new(age, 'none', name, parent_permission: permission == 1)
-    add_to_list(list, student)
+    @people << student
+    show_options
   end
 
   def create_teacher(list)
@@ -82,7 +92,8 @@ class App
     puts "\nEnter the specialization of the teacher"
     spec = gets.chomp
     teacher = Teacher.new(spec, age, name)
-    add_to_list(list, teacher)
+    @people << teacher
+    show_options
   end
 
   def validate_num(input, list)
@@ -123,12 +134,14 @@ class App
     add_to_list(list, rental)
   end
 
-  def show_books(list)
-    list.each { |b| puts "\nTitle: '#{b.title}' Author: '#{b.author}'" }
+  def show_books
+    @books.each { |b| puts "\nTitle: '#{b.title}' Author: '#{b.author}'" }
+    show_options
   end
 
   def show_people(list)
-    list.each { |person| puts "\n[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    @people.each { |person| puts "\n[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    show_options
   end
 
   def show_rentals(list)
@@ -142,14 +155,10 @@ class App
   end
 end
 
-def main(book_list_input = [], people_list_input = [], rentals_list_input = [])
+def main
   app = App.new
-  book_list = book_list_input
-  people_list = people_list_input
-  rentals_list = rentals_list_input
+  
   app.show_options
-  user_input = gets.chomp
-  app.input_process(user_input, book_list, people_list, rentals_list)
 end
 
 main
