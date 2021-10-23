@@ -32,7 +32,7 @@ module Creator
     puts '(0) No permission'
     puts '(1) Permission'
     permission = gets.chomp
-    student = Student.new(age, 'none', name, parent_permission: permission == 1)
+    student = Student.new(age, name, parent_permission: permission == 1)
     @people << student
     add_to_list
     input_process
