@@ -22,7 +22,7 @@ class App
     puts '5 - Create a rental'
     puts '6 - List all rentals for a given person id'
     puts '7 - Exit'
-    option = gets.chomp.to_i
+    gets.chomp.to_i
   end
 
   def input_process
@@ -49,7 +49,7 @@ class App
   end
 
   def add_to_list
-    'Created sucessfully'
+    puts 'Created sucessfully'
   end
 
   def validate_num(input, list)

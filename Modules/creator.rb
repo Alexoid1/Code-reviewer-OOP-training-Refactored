@@ -63,6 +63,10 @@ module Creator
     validate_num(person_choice, @people)
     puts "\nPlease enter a day"
     day = gets.chomp
+    create_rental2(day, person_choice, book_choice)
+  end
+
+  def create_rental2(day, person_choice, book_choice)
     puts "\nPlease enter a month"
     month = gets.chomp
     puts "\nPlease enter a year"
