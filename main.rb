@@ -157,7 +157,7 @@ class App
 
   def show_rentals
     puts "\nPlease enter the id of the person"
-    id = gets.chomp
+    id = gets.chomp.to_i
 
     puts "\nRentals:"
     @rentals.each do |r|
