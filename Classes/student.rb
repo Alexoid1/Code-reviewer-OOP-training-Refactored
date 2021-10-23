@@ -8,9 +8,9 @@ require 'date'
 
 class Student < Person
   attr_accessor :classroom
+
   def initialize(age, classroom = 'none', name = 'Unknown', parent_permission: true)
     super(age, name, parent_permission: parent_permission)
-    
   end
 
   def play_hooky
