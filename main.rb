@@ -163,6 +163,7 @@ class App
     @rentals.each do |r|
       puts "Date: #{r.date}, Book: '#{r.book.title}', Author: '#{r.book.author}'" if id.to_i == r.person.id
     end
+    input_process
   end
 end
 
