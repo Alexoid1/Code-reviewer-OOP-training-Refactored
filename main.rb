@@ -37,9 +37,9 @@ class App
     when 4
       create_book
     when 5
-      create_rental(rentals_list, book_list, people_list)
+      create_rental
     when 6
-      show_rentals(rentals_list)
+      show_rentals
     when 7
       puts 'Thank you for using this app!'
       
@@ -140,8 +140,9 @@ class App
     validate_date(date)
     rental = Rental.new(date, @people[person_choice.to_i], @books[book_choice.to_i])
     puts 'Created successfully'
+    @rentals << rental
     add_to_list
-    show_options
+    input_process
   end
 
   def show_books
@@ -154,12 +155,12 @@ class App
     input_process
   end
 
-  def show_rentals(list)
+  def show_rentals
     puts "\nPlease enter the id of the person"
     id = gets.chomp
 
     puts "\nRentals:"
-    list.each do |r|
+    @rentals.each do |r|
       puts "Date: #{r.date}, Book: '#{r.book.title}', Author: '#{r.book.author}'" if id.to_i == r.person.id
     end
   end
