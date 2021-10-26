@@ -22,7 +22,7 @@ To get a local copy up and running follow these simple example steps:
 - Go to https://github.com/Alexoid1/Code-reviewer-OOP-training-Refactored and clone the repo using: <br>
 `https://github.com/Alexoid1/Code-reviewer-OOP-training-Refactored` in your terminal.
 
-### Github Actions
+## Github Actions
 
 To make sure the linters' checks using Github Actions work properly, you should follow the next steps:
 
