@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# OOP-training-refactor-your-code
+# OOP-training-refactor-your-code.
 
 - Describe the SOLID principles of OOP.
 - Refactor your own Ruby code after gaining new knowledge.
